@@ -43,3 +43,8 @@ The InSpec examples for Config Management Camp 2019 - presented by Gratien D'hae
 - (inside the container) run: inspec> describe file('/etc/gshadow') do
 - (inside the container) run: inspec>   it { should be_owned_by 'root' }  
 - (inside the container) run: inspec> end 
+
+## Demonstrate InSpec profile
+- (inside the container) run: inspec init profile newprofile
+- (inside the container) run: inspec check newprofile
+
