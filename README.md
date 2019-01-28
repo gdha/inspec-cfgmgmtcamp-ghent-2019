@@ -71,14 +71,17 @@ end
 - (on Mac) run: cat recipes/default.rb
 - (on Mac) run: kitchen converge
 - (on Mac) run: kitchen verify
+
 [expected output] Test Summary: 86 successful, 44 failures, 1 skipped
 - (on Mac) run: vi recipes/default.rb
+
   uncomment line: # include_recipe 'os-hardening'
 - (on Mac) run: kitchen converge
 - (on Mac) run: kitchen verify
+
 [expected output] Test Summary: 129 successful, 1 failure, 1 skipped
 - (on Mac) run: kitchen destroy
 
 ## LICENSE
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to InSpec</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.chef.io" property="cc:attributionName" rel="cc:attributionURL">Gratien Dhaese</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">What did you InSpec?</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://www.it3.be/" property="cc:attributionName" rel="cc:attributionURL">Gratien Dhaese</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
