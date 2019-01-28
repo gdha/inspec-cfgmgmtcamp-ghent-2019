@@ -43,11 +43,11 @@ If you have questions or remarks mail at gratien . dhaese @ gmail . com
 - (inside the container) run: inspec> help
 - (inside the container) run: inspec> command('uname -s').stdout
 - (inside the container) run: inspec>
-
+```
      describe file('/etc/gshadow') do
        it { should be_owned_by 'root' }  
      end 
-
+```
 
 ## Demonstrate InSpec profile
 - (inside the container) run: inspec init profile newprofile
