@@ -43,9 +43,11 @@ If you have questions or remarks mail at gratien . dhaese @ gmail . com
 - (inside the container) run: inspec> help
 - (inside the container) run: inspec> command('uname -s').stdout
 - (inside the container) run: inspec>
+----
 describe file('/etc/gshadow') do
   it { should be_owned_by 'root' }  
 end 
+----
 
 ## Demonstrate InSpec profile
 - (inside the container) run: inspec init profile newprofile
@@ -58,7 +60,9 @@ end
 - (on Mac) optional: echo '192.168.33.10 client' >> /etc/hosts
 - (on Mac) run: inspec exec -t ssh://client --password vagrant ../path-check/
 - (on Mac) run: inspec exec -t ssh://client --password vagrant https://github.com/dev-sec/ssh-baseline
+----
 [expected output] Test Summary: 38 successful, 60 failures, 2 skipped
+----
 - (on Mac) run: vagrant ssh
 - (inside vagrant): run: cd /home/vagrant
 - (inside vagrant): run: sudo ansible-playbook /vagrant/ansible-ssh-hardening.yml
