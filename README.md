@@ -1,6 +1,8 @@
 # inspec-cfgmgmtcamp-ghent-2019
 The InSpec examples for Config Management Camp 2019 - presented by Gratien D'haese
 
+If you have questions or remarks mail at gratien . dhaese @ gmail . com
+
 ## Pre-requisites
 - Linux or Mac OS/X system
 - vim editor or alike
@@ -40,11 +42,43 @@ The InSpec examples for Config Management Camp 2019 - presented by Gratien D'hae
 - (inside the container) run: inspec shell
 - (inside the container) run: inspec> help
 - (inside the container) run: inspec> command('uname -s').stdout
-- (inside the container) run: inspec> describe file('/etc/gshadow') do
-- (inside the container) run: inspec>   it { should be_owned_by 'root' }  
-- (inside the container) run: inspec> end 
+- (inside the container) run: inspec>
+describe file('/etc/gshadow') do
+  it { should be_owned_by 'root' }  
+end 
 
 ## Demonstrate InSpec profile
 - (inside the container) run: inspec init profile newprofile
 - (inside the container) run: inspec check newprofile
 
+## Demonstrate Vagrant with InSpec
+- go to directory inspec-cfgmgmtcamp-ghent-2019/vagrant-ubuntu18
+- (on Mac) run: vagrant status
+- (on Mac) run: vagrant up --provision
+- (on Mac) optional: echo '192.168.33.10 client' >> /etc/hosts
+- (on Mac) run: inspec exec -t ssh://client --password vagrant ../path-check/
+- (on Mac) run: inspec exec -t ssh://client --password vagrant https://github.com/dev-sec/ssh-baseline
+[expected output] Test Summary: 38 successful, 60 failures, 2 skipped
+- (on Mac) run: vagrant ssh
+- (inside vagrant): run: cd /home/vagrant
+- (inside vagrant): run: sudo ansible-playbook /vagrant/ansible-ssh-hardening.yml
+- (on Mac) run: inspec exec -t ssh://client --password vagrant https://github.com/dev-sec/ssh-baseline
+[expected output] Test Summary: 94 successful, 4 failures, 2 skipped
+- (on Mac) run: vagrant halt (to stop the VM), or vagrant destroy (to stop&remove the VM)
+ 
+## Demonstrate kitchen test together with InSpec
+- go to directory inspec-cfgmgmtcamp-ghent-2019/cookbooks/nginx_test
+- (on Mac) run: cat recipes/default.rb
+- (on Mac) run: kitchen converge
+- (on Mac) run: kitchen verify
+[expected output] Test Summary: 86 successful, 44 failures, 1 skipped
+- (on Mac) run: vi recipes/default.rb
+  uncomment line: # include_recipe 'os-hardening'
+- (on Mac) run: kitchen converge
+- (on Mac) run: kitchen verify
+[expected output] Test Summary: 129 successful, 1 failure, 1 skipped
+- (on Mac) run: kitchen destroy
+
+## LICENSE
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Introduction to InSpec</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://www.chef.io" property="cc:attributionName" rel="cc:attributionURL">Gratien Dhaese</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.

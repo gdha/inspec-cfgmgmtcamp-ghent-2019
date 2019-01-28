@@ -24,6 +24,7 @@ suites:
   - name: default # the name of the environment must be the same as the name of the test folder
     run_list: # run_list Chef
       - recipe[nginx_test::default]
+      #- recipe[os-hardening::default]
     verifier:
       inspec_tests:
         - test/integration/default
